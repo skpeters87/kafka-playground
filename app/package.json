@@ -2,7 +2,7 @@
   "name": "kafka",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "topic.js",
   "scripts": {
     "start": "node topic.js",
     "dev": "nodemon --watch topic.js",

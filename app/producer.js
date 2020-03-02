@@ -5,7 +5,7 @@ async function run(){
   try {
     const kafka = new Kafka({
       "clientId": "app",
-      "brokers": ["kafka:9092"]
+      "brokers": ["10.40.1.159:9092"]
     })
 
     const producer = kafka.producer()
@@ -24,10 +24,12 @@ async function run(){
 
     console.log(`Send Successfully: ${JSON.stringify(result)}`)
     await producer.disconnect()
+
   } catch (ex) {
     console.error(`something bad happened ${ex}`)
+
   } finally {
-    Process.exit(0)
+    process.exit(0)
   }
 }
 

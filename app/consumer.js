@@ -4,7 +4,7 @@ async function run(){
   try {
     const kafka = new Kafka({
       "clientId": "app",
-      "brokers": ["kafka:9092"]
+      "brokers": ["10.40.1.159:9092"]
     })
 
     const consumer = kafka.consumer()

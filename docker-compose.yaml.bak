@@ -1,6 +1,21 @@
 version: "3.7"
 
 services:
+  app:
+    container_name: app
+    image: node:12
+    build:
+      context: ./app
+    depends_on:
+      - zookeeper
+      - kafka
+    environment:
+      - PORT=3000
+    ports:
+      - 3000:3000
+    volumes:
+      - ./app:/app
+    command: sh -c "npm install && npm run dev"
   zookeeper:
     container_name: zookeeper
     image: zookeeper:3.5.6
@@ -17,8 +32,8 @@ services:
     depends_on:
       - zookeeper
     environment:
-      - KAFKA_ZOOKEEPER_CONNECT=10.40.1.159:2181
-      - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://10.40.1.159:9092
+      - KAFKA_ZOOKEEPER_CONNECT='zookeeper:2181'
+      - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT//kafka:9092
       - KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR=1
     ports:
       - '9092:9092'
